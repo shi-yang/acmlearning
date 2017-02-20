@@ -33,7 +33,3 @@ int main()
 	}
 	return 0;
 }
-Distributed under GPLv3. | Project Homepage | Developer: 51isoft crccw | 二次开发： Semprathlon | Current Style: Original.
-
-Select Style:   Fluid Width?
- 
