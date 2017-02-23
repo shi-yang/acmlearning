@@ -2,13 +2,13 @@
 #include <cstdio>
 #include <map>
 using namespace std;
-map<string, bool> mp;
 int main()
 {
-    freopen("data.in", "r", stdin);
-    freopen("data.out", "w", stdout);
+    // freopen("data.in", "r", stdin);
+    // freopen("data.out", "w", stdout);
     string str;
     while (getline(cin, str)) {
+      map<string, bool> mp;
       if (str[0] == '#')
         break;
       str += ' ';
@@ -19,8 +19,10 @@ int main()
           cnt++;
         } else {
           string s = str.substr(i - cnt, cnt);
-          if (!mp[s]) {
-            mp[s] = 1;
+          if (s == "")
+            continue;
+          if (mp[s] == false) {
+            mp[s] = true;
             ans++;
           }
           cnt = 0;

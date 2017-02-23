@@ -5,8 +5,8 @@ const int maxn = 80;
 char m[maxn][maxn];
 int main()
 {
-  freopen("data.in", "r", stdin);
-  freopen("data.out", "w", stdout);
+  // freopen("data.in", "r", stdin);
+  // freopen("data.out", "w", stdout);
   int n;
   char s1, s2;
   bool tt = false;
