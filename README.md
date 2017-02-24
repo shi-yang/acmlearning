@@ -11,9 +11,14 @@ oj_code/            代码
 template/           正在积累的模板
 ```
 
-代码文件命名
+Article
+--------
+[入门练习总结](acm_article/gettingstarted.md);
 
-题目类型.OJ系统题号.语言
+
+>代码文件命名
+
+>题目类型.OJ系统题号.语言
 (basic.hdu1064.cpp)
 
 ### 搜索
