@@ -7,7 +7,7 @@ int main()
 {
   int n, q;
   int cas = 1;
-  freopen("data.in", "r", stdin);
+  //freopen("data.in", "r", stdin);
   while (scanf("%d%d", &n, &q) != EOF && (n && q)) {
     printf("CASE# %d:\n", cas++);
     for (int i = 0; i < n; i++) {
@@ -18,7 +18,11 @@ int main()
       int x;
       scanf("%d", &x);
       int ans = lower_bound(a, a + n, x) - a;
-      printf("%d %d\n", x, ans + 1);
+      if (a[ans] == x) {
+        printf("%d found at %d\n", x, ans + 1);
+      } else {
+        printf("%d not found\n", x);
+      }
     }
   }
   return 0;
