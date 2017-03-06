@@ -20,6 +20,7 @@ template/           正在积累的模板
 Article
 --------
 [入门练习总结](acm_article/gettingstarted.md);
+[Max flow](template/maxflow.ek.cpp);
 
 
 
