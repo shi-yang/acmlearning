@@ -21,18 +21,15 @@ Article
 --------
 [入门练习总结](acm_article/gettingstarted.md);
 [Max flow](template/maxflow.ek.cpp);
-
-
+[位运算小技巧](acm_article/operation.md);
 
 
 ### 搜索
 
 #### DFS
-水题，不需什么技巧，直接 DFS：
 
 hdu2181(哈密顿绕行世界问题)、poj1979(Red and Black)、poj2386(Lake Counting)、poj2676(Sudoku)、poj3050(Hopscotch)
 
-> 网上说到数独(poj2676)问题需要剪枝。我是先列举 1-9 这九个数字看看满不满足数独的条件，满足再放进去迭代。
 
 ### 图算法
 
