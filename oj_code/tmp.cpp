@@ -1,14 +1,26 @@
 #include <bits/stdc++.h>
 using namespace std;
-int get_id(int l, int r) {
-  return l + r | l != r;
-}
+const int maxn = 101;
+int n, m;
+int mp[maxn][maxn];
 int main()
 {
-	int a = 1 << 3;
-	cout << a << endl;
-	int b = next_permutation(2, 3);
-	cout << b << endl;
-	cout << get_id(4 , 5) << endl;
+  while (cin >> n >> m && n && m) {
+    memset(mp, 0, sizeof(mp));
+    for (int i = 1; i <= n; i++) {
+      string str;
+      cin >> str;
+      for (int j = 0; j < str.size(); j++) {
+        if (str[j] == 'H') {
+          mp[0][j] = 1;
+        } else if (str[j] == 'm') {
+          mp[]
+        } else {
+
+        }
+      }
+    }
+
+  }
 	return 0;
 }
