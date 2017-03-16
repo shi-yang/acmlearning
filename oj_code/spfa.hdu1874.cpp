@@ -1,36 +1,37 @@
 #include <bits/stdc++.h>
 using namespace std;
 const int maxn = 205;
-vector<pair<int, int> >e[maxn];
+vector<pair<int, int> > E[maxn];
 int n, m;
 int d[maxn], inq[maxn];
+void init()
+{
+  for (int i = 0; i < maxn; i++) E[i].clear();
+  for (int i = 0; i < maxn; i++) inq[i] = 0;
+  for (int i = 0; i < maxn; i++) d[i] = 1e9;
+}
 int main()
 {
   while (cin >> n >> m) {
-    for (int i = 0; i < maxn; i++)
-      e[i].clear();
-    for (int i = 0; i < maxn; i++)
-      inq[i] = 0;
-    for (int i = 0; i < maxn; i++)
-      d[1] = 1e9;
-    for (int i = 0; i < n; i++) {
+    init();
+    for (int i = 0; i < m; i++) {
       int x, y, z;
       cin >> x >> y >> z;
-      e[x].push_back(make_pair(y, z));
-      e[y].push_back(make_pair(x, z));
+      E[x].push_back(make_pair(y, z));
+      E[y].push_back(make_pair(x, z));
     }
     int s, t;
     cin >> s >> t;
-    queue<int> que;
-    que.push(s), d[s] = 0, inq[s] = 1;
+    queue <int> que;
+    que.push(s);
+    d[s] = 0, inq[s] = 1;
     while (!que.empty()) {
-      int q = que.front();
+      int now = que.front();
       que.pop();
-      inq[q] = 0;
-      for (int i = 0; i < e[q].size(); i++) {
-        int v = e[q][i].first;
-        if (d[v] > d[q] + e[q][i].second) {
-          d[v] = d[q] + e[q][i].second;
+      for (int i = 0; i < E[now].size(); i++) {
+        int v = E[now][i].first;
+        if (d[v] > d[now] + E[now][i].second) {
+          d[v] = d[now] + E[now][i].second;
           if (inq[v] == 1)
             continue;
           inq[v] = 0;
@@ -38,11 +39,10 @@ int main()
         }
       }
     }
-    if (d[t] == 1e9) {
+    if (d[t] == 1e9)
       cout << -1 << endl;
-    } else {
+    else
       cout << d[t] << endl;
-    }
   }
   return 0;
 }
