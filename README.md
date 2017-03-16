@@ -21,7 +21,7 @@ Article
 --------
 1. [入门练习总结](acm_article/gettingstarted.md)
 
-2. [Max flow](template/maxflow.ek.cpp)
+2. [Max flow](acm_article/maxflow.md)
 
 3. [位运算小技巧](acm_article/operation.md)
 
