@@ -4,16 +4,14 @@ const int maxn = 205;
 vector<pair<int, int> > E[maxn];
 int n, m;
 int d[maxn], inq[maxn];
-void init()
-{
-  for (int i = 0; i < maxn; i++) E[i].clear();
-  for (int i = 0; i < maxn; i++) inq[i] = 0;
-  for (int i = 0; i < maxn; i++) d[i] = 1e9;
-}
 int main()
 {
   while (cin >> n >> m) {
-    init();
+    for (int i = 0; i < maxn; i++) {
+      E[i].clear();
+      inq[i] = 0;
+      d[i] = 1e9;
+    }
     for (int i = 0; i < m; i++) {
       int x, y, z;
       cin >> x >> y >> z;
@@ -34,10 +32,11 @@ int main()
           d[v] = d[now] + E[now][i].second;
           if (inq[v] == 1)
             continue;
-          inq[v] = 0;
+          inq[v] = 1;
           que.push(v);
         }
       }
+      inq[now] = 0;
     }
     if (d[t] == 1e9)
       cout << -1 << endl;
