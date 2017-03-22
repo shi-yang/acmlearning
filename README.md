@@ -25,7 +25,9 @@ Article
 
 3. [位运算小技巧](acm_article/operation.md)
 
-4. [最短路算法(SPFA & dijkstra)](acm_article/spfa_dijkstra.md)
+4. [二分总结](acm_article/binary_search.md)
+
+5. [最短路算法(SPFA & dijkstra)](acm_article/spfa_dijkstra.md)
 
 
 ### 搜索
