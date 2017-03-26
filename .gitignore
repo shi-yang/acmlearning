@@ -1,6 +1,4 @@
-oj_code/a.out
-oj_code/data.in
-oj_code/data.out
-oj_code/tmp.cpp
-#oj_code/tmp
-oj_code/*.exe
+/*
+!.gitignore
+!*.cpp
+!*.md
