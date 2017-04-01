@@ -1,5 +1,6 @@
 #include <iostream>
 #include <queue>
+#include <cstdio>
 #include <cstring>
 using namespace std;
 const int maxn = 50000;
@@ -18,18 +19,20 @@ int bfs()
     return 0;
   if (G[0][0] == 0)
     return -1;
+  vis[0][0] = 1;
   queue<edge> que;
   que.push(edge(0, 0, 0));
   while (!que.empty()) {
     edge now = que.front();
-    cout << "x: " << now.x << " y:" << now.y << endl;
+    //cout << "x: " << now.x << " y:" << now.y << " d:" << now.t << endl;
     que.pop();
     for (int i = 0; i < 4; i++) {
       int nx = now.x + dx[i], ny = now.y + dy[i];
-      if (0 <= nx && nx <= 300 && 0 <= ny && ny <= 300) {
+      if (0 <= nx && 0 <= ny) {
         if (G[nx][ny] == -1)
           return now.t + 1;
-        if (now.t < G[nx][ny]) {
+        if (now.t + 1 < G[nx][ny] && !vis[nx][ny]) {
+          vis[nx][ny] = 1;
           que.push(edge(nx, ny, now.t + 1));
           G[nx][ny] = now.t + 1;
         }
@@ -39,7 +42,7 @@ int bfs()
   return -1;
 }
 int main()
-{                                       
+{
   while (cin >> m) {
     memset(G, -1, sizeof(G));
     memset(vis, 0, sizeof(vis));
