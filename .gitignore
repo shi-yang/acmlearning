@@ -2,3 +2,5 @@
 *.out
 *in
 *out
+tmp.cpp
+tmp.c
