@@ -1,4 +1,4 @@
-/*
-!.gitignore
-!*.cpp
-!*.md
+*.exe
+*.out
+*in
+*out
