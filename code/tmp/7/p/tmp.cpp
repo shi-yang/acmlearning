@@ -2,6 +2,10 @@
 using namespace std;
 int main()
 {
-  cout << 3 % 10007 << endl;
+  for (int i = 1; i < 10; i++)
+  {
+    int t = i << 2;
+    cout << t << endl;
+  }
   return 0;
 }

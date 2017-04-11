@@ -25,26 +25,25 @@ int sum(int x)
 }
 int main()
 {
-  freopen("data.in", "r", stdin);
   int t;
-  cin >> t;
+  scanf("%d", &t);
   int cas = 1;
   while (t--) {
-    cin >> n;
+    scanf("%d", &n);
     memset(a, 0, sizeof(a));
 		printf("Case %d:\n", cas++);
     for (int i = 1; i <= n; i++) {
       int x;
-      cin >> x;
+      scanf("%d", &x);
       add(i, x);
     }
-    string str;
-    while (cin >> str) {
+    char str[10];
+    while (~scanf("%s", str)) {
 			if (str[0] == 'E') {
 				break;
 			} else {
         int p, q;
-				cin >> p >> q;
+				scanf("%d %d", &p, &q);
 				if (str[0] == 'Q') {
 					int ans = sum(q) - sum(p - 1);
 					printf("%d\n", ans);

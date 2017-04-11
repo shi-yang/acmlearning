@@ -1,21 +1,26 @@
 #include <bits/stdc++.h>
 using namespace std;
+const int maxn = 1005;
+int w[maxn], a[maxn];
+int dp[maxn][maxn];
 int main()
 {
-	int tmp[10][10];
-	int a[10];
-	int n = 5;
-	for (int i = 1; i <= 5; i++)
-		a[i] = i;
-	for (int i = n - 2; i >= 0; i--) {
-		for (int j = 0; j <= i; j++) {
-			if (i == n - 2) {
-				tmp[i][j] = a[j] + a[j + 1];
-			} else {
-				tmp[i][j] = tmp[i + 1][j] + tmp[i + 1][j + 1];
-			}
-		}
-	}
-	cout << tmp[0][0] << endl;
+  int t;
+  scanf("%d", &t);
+  while (t--) {
+    int n, v;
+    scanf("%d %d", &n, &v);
+    for (int i = 1; i <= n; i++)
+      scanf("%d", &a[i]);
+    for (int i = 1; i <= n; i++)
+      scanf("%d", &w[i]);
+    for (int i = 1; i <= n; i++) {
+      for (int j = 0; j <= v; j++) {
+        if (j > w[i]) {
+          dp[i][j] = max(dp[i][j], dp[i][j - w[i]] + a[i]);
+        }
+      }
+    }
+  }
 	return 0;
 }

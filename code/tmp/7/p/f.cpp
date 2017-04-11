@@ -1,28 +1,29 @@
 #include <bits/stdc++.h>
 using namespace std;
 const int maxn = 300005;
-int a[maxn], b[maxn];
-map<int, int> mp;
-map<int, int> same;
+int b[maxn];
 struct edge {
   int id, v;
-} before[maxn], after[maxn];
+  bool operator < (const edge & a) const {
+    return v < a.v;
+  }
+} e[maxn];
 int main()
 {
   int n;
   scanf("%d", &n);
-  long long sum = 0, tmp = 0;
   for (int i = 0; i < n; i++) {
-    scanf("%d", &before[i].v);
-    before[i].id = 0;
+    scanf("%d", &e[i].v);
+    e[i].id = i;
   }
-  sort(before, before + n);
-  after[0] = before[0].v;
+  sort(e, e + n);
+  b[e[0].id] = e[0].v;
+  int tmp = e[0].v;
   for (int i = 1; i < n; i++) {
-    if (before[i] == before[i - 1]) {
-
+    if (e[i].v <= tmp) {
+      b[e[i].id] = ++tmp;
     } else {
-      after[i]
+      tmp = b[e[i].id] = e[i].v;
     }
   }
   for (int i = 0; i < n; i++) {
