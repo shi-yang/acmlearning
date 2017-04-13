@@ -19,12 +19,12 @@ template/           正在积累的模板
 
 Article
 --------
-1. [入门练习总结](acm_article/gettingstarted.md)
+1. [入门练习总结](articles/gettingstarted.md)
 
-2. [Max flow](acm_article/maxflow.md)
+2. [Max flow](articles/maxflow.md)
 
-3. [位运算小技巧](acm_article/operation.md)
+3. [位运算小技巧](articles/operation.md)
 
-4. [二分总结](acm_article/binary_search.md)
+4. [二分总结](articles/binary_search.md)
 
-5. [最短路算法](acm_article/shortest_path.md)
+5. [最短路算法](articles/shortest_path.md)
