@@ -12,8 +12,8 @@ DIRECTORY STRUCTURE
 -------------------
 
 ```
-acm_article/        文章
-oj_code/            代码
+articles/           文章
+code/               代码
 template/           正在积累的模板
 ```
 
@@ -27,20 +27,4 @@ Article
 
 4. [二分总结](acm_article/binary_search.md)
 
-5. [最短路算法(SPFA & dijkstra)](acm_article/spfa_dijkstra.md)
-
-
-### 搜索
-
-#### DFS
-
-hdu2181(哈密顿绕行世界问题)、poj1979(Red and Black)、poj2386(Lake Counting)、poj2676(Sudoku)、poj3050(Hopscotch)
-
-
-### 图算法
-
-#### 最小生成树
-hdu1863(畅通工程)
-
-### DP
-数塔
+5. [最短路算法](acm_article/shortest_path.md)
