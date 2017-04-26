@@ -1,12 +1,12 @@
 #include <iostream>
 #include <cstdio>
-
+#include <vector>
 using namespace std;
 typedef long long ll;
-inline ll mul(ll a, ll b, ll mod)
+inline ll mul(ll a, ll b, ll c)
 {
 	ll res = 0;
-	a %= mod, b %= mod;
+	a %= c, b %= c;
 	while (b) {
 		if (b & 1) {
 			res += a;
@@ -17,6 +17,7 @@ inline ll mul(ll a, ll b, ll mod)
 			a -= c;
 		b >>= 1;
 	}
+	return res;
 }
 inline ll power(ll n, ll k, ll mod) {
 	ll res = 1;
@@ -49,7 +50,7 @@ bool miller_rabin(ll n, int s)
 	if ((n & 1) == 0)	return false;
 	ll t = 0, x = n - 1;
 	while ((x & 1) == 0) {
-		t++, x >> = 1;
+		t++, x >>= 1;
 	}
 	while (s--) {
 		ll a = rand() % (n - 1) + 1;
@@ -58,7 +59,7 @@ bool miller_rabin(ll n, int s)
 	}
 	return true;
 }
-ll factor[10000];
+vector<ll> factor;//ll factor[10000];
 int cnt;
 ll gcd(ll a, ll b)
 {
@@ -90,7 +91,7 @@ ll pollard_rho(ll n, ll c)
 void findfac(ll n)
 {
 	if (miller_rabin(n, 20)) {
-		factor[cnt++] = n;
+		factor.push_back(n);//factor[cnt++] = n;
 		return ;
 	}
 	ll p = n;
@@ -101,9 +102,25 @@ void findfac(ll n)
 }
 int main()
 {
-	ll g, ll l;
+	ll g, l;
 	while (~scanf("%lld %lld", &g, &l)) {
-	
+		ll t = l / g;
+		if (t == 1) {
+			printf("%lld %lld\n", g, g);
+			continue;
+		}
+		factor.clear();
+		findfac(t);
+		ll a = factor[0], b = t / factor[0];
+		ll min = a + b;
+		for (int i = 1;  i < factor.size(); i++) {
+			if (min > factor[i] + t / factor[i]) {
+				a = factor[i], b = t / factor[i];
+			}
+		}
+		if (a > b)
+			swap(a, b);
+		printf("%lld %lld\n", a * g, b * g);
 	}
 	return 0;
 }
