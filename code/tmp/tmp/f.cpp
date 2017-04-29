@@ -1,30 +1,41 @@
 ﻿#include <bits/stdc++.h>
 using namespace std;
-const int maxn = 1005;
-int w[maxn], v[maxn];
-int dp[maxn][maxn];
+const int maxn = 100005;
+const double eps = 1e-7;
+int n;
+float k;
+int a[maxn];
+long long sum;
+bool check(double m)
+{
+  double mo = 0;
+  for (int i = 0; i < n; i++) {
+    
+  }
+}
 int main()
 {
   int t;
   scanf("%d", &t);
+  int cas = 1;
   while (t--) {
-    int n, c;
-    scanf("%d %d", &n, &c);
+    cin >> n >> k;
+    sum = 0;
     for (int i = 0; i < n; i++) {
-      scanf("%d", v + i); 
+      scanf("%d", a + i);
+      sum += a[i];
     }
-    for (int i = 0; i < n; i++)
-      scanf("%d", w + i);
-    memset(dp, 0, sizeof(dp));
-    for (int i = 0; i < n; i++) {
-      for (int j = 0; j <= c; j++) {
-        if (j >= w[i])
-          dp[i + 1][j] = max(dp[i][j], dp[i][j - w[i]] + v[i]);
-        else
-          dp[i + 1][j] = dp[i][j];
+    sort(a, a + n);
+    double l = 0, r = 100005;
+    while (r - l > eps) {
+      double m = (r + l) / 2.0;
+      if (check(m)) {
+        l = m;
+      } else {
+        r = m;
       }
     }
-    printf("%d\n", dp[n][c]);
+    printf("Case #%d: %f\n", cas++, l);
   }
   return 0;
 }

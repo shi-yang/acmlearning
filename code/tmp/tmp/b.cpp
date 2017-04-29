@@ -1,36 +1,26 @@
-﻿#include <iostream>
-#include <cstdio>
+﻿#include <bits/stdc++.h>
 using namespace std;
-const int N = 100005;
-int a[N];
+int n, x;
+const int maxn = 10005;
+int pos;
+int rcd[maxn << 2];
+void inparse(int rt)
+{
+  if (rt > n)
+    return ;
+  inparse(rt * 2);
+  rcd[pos++] = rt;
+  inparse(rt * 2 + 1);
+}
 int main()
 {
-  int n, t;
-  int kase = 1;
-  scanf("%d" ,&t);
-  while (t--) {
-    scanf("%d", &n);
-    int l, r;
-    int sum = -1e9;
-    int mx = -1e9;
-    for (int i = 0; i < n; i++) {
-      scanf("%d", &a[i]);
-    }    
-    int tmp;
-    for (int i = 0; i < n; i++) {
-      int t = a[i];
-      if (sum + t < t) {
-        sum = t, tmp = i;
-      } else {
-        sum += t;
-      }
-      if (sum > mx) {
-        mx = sum;
-        l = tmp;
-        r = i;
-      }
-    }
-    printf("Case %d:\n%d %d %d\n", kase++, mx, l, r);
+  int t;
+  scanf("%d", &t);
+  for (int kas = 1; kas <= t; kas++) {
+    scanf("%d %d", &n, &x);
+    pos = 1;
+    inparse(1);
+    printf("Case #%d: %d\n", kas, rcd[x]);
   }
   return 0;
 }
