@@ -1,28 +1,29 @@
 #include <iostream>
 #include <cstdio>
-int d[1111][32];
-
-void rmq_init()
-{
-	for (int i = 1; i <= n; i++)
-		d[i][0] = ;
-	for (int j = 1; (1 << j) <= n; j++)
-		for (int i = 1; i + (1 << j) - 1 <= n; i++)
-			
-}
-
-int rmq()
-{
-	int k = 0;
-	while ((1 << (k + 1)) <= r - l + 1)	k++;
-
-}
+using namespace std;
 int main()
 {
-	string s;
-	int m;
-	while (cin >> s >> m) {
-		
-	}
-	return 0;
+  string str;
+  int m;
+  while (cin >> str >> m) {
+    int cnt = str.size() - m;
+    string ans;
+    int pos = 0;
+    while (cnt--) {
+      for (int i = pos + 1; i <= m; i++) {
+        if (str[pos] > str[i])
+          pos = i;
+      }
+      ans += str[pos++];
+      m++;
+    }
+    int k = 0;
+    while (ans[k] == '0') k++;
+    if (k == ans.size())
+      ans = '0';
+    else
+      ans = ans.substr(k, ans.size() - k);
+    cout << ans << endl;
+  }
+  return 0;
 }
