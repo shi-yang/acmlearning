@@ -5,7 +5,6 @@
 using namespace std;
 const int N = 1e6 + 5;
 vector<pair<int, int> > G[N];
-int inq[N];
 int dis[N];
 struct edge {
 	int u, v, c;
@@ -13,25 +12,19 @@ struct edge {
 void spfa(int s)
 {
 	for (int i = 0; i < N; i++) {
-		inq[i] = 0;
 		dis[i] = 1e9;
 	}
-	inq[s] = 1;
 	dis[s] = 0;
-	queue<int> que;
-	que.push(s);
+	priority_queue<pair<int, int> > que;
+	que.push(make_pair(s, 0));
 	while (que.size()) {
-		int now = que.front();
+		int now = que.top().first;
 		que.pop();
-		inq[now] = 0;
 		for (int i = 0; i < G[now].size(); i++) {
 			int v = G[now][i].first;
 			if (dis[v] > dis[now] + G[now][i].second) {
 				dis[v] = dis[now] + G[now][i].second;
-				if (inq[v])
-					continue;
-				inq[v] = 1;
-				que.push(v);
+				que.push(make_pair(v, -dis[v]));
 			}
 		}
 	}

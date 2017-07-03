@@ -1,19 +1,35 @@
 ﻿#include <cstdio>
 #include <algorithm>
 #include <vector>
+#include <cstring>
 #include <queue>
 using namespace std;
 const int N = 105;
+const int inf = 0x3f3f3f3f;
 struct edge {
   int to, co;
   edge(){}
   edge(int to, int co) : to(to), co(co) {}
 };
-int inq[N];
 vector<edge> G[N];
-void spfa()
+int dis[N];
+void dijkstra()
 {
-
+  memset(dis, inf, sizeof(dis));
+  priority_queue<pair<int, int> > que;
+  que.push(make_pair(0, 1));
+  dis[1] = 0;
+  while (!que.empty()) {
+    int now = que.top().second;
+    que.pop();
+    for (int i = 0; i < G[now].size(); i++) {
+      int u = G[now][i].to;
+      if (dis[u] > dis[now] + G[now][i].co) {
+        dis[u] = dis[now] + G[now][i].co;
+        que.push(make_pair(-dis[u], u));
+      }
+    }
+  }
 }
 int main()
 {
@@ -31,6 +47,11 @@ int main()
       }
     }
   }
-  spfa();
+  dijkstra();
+  int ans = 0;
+  for (int i = 1; i <= n; i++) {
+    ans = max(ans, dis[i]);
+  }
+  printf("%d\n", ans);
   return 0;
 }
