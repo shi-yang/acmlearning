@@ -3,6 +3,7 @@ using namespace std;
 
 const int N = 20;
 int p[N];
+int dp[N][1 << N];
 int main()
 {
 	int n, cas = 1;

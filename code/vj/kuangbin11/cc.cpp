@@ -30,11 +30,12 @@ int maxflow()
 	int flow = 0;
 	for (;;) {
 		memset(a, 0, sizeof(a));
+		a[s] = inf;
 		queue<int> que;
 		que.push(s);
-		a[s] = inf;
 		while (!que.empty()) {
-			int now = que.front(); que.pop();
+			int now = que.front();
+			que.pop();
 			for (int i = 0; i < G[now].size(); i++) {
 				edge &e = E[G[now][i]];
 				if (!a[e.to] && e.cap > e.flow) {
@@ -43,7 +44,8 @@ int maxflow()
 					que.push(e.to);
 				}
 			}
-			if (a[t]) break;
+			if (a[t])
+				break;
 		}
 		if (!a[t])
 			break;
