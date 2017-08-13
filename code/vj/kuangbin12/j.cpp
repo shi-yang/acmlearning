@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 using namespace std;
-const int INF = 0x3f3f3f3f;
 const int N = 1005;
 struct node {
 	int s, v, id;
@@ -8,7 +7,7 @@ struct node {
 		return v > op.v;
 	}
 } e[N];
-int G[N], ans[N];
+int rec[N], dp[N];
 int main()
 {
 	int m = 1;
@@ -16,20 +15,31 @@ int main()
 		e[m].id = m;
 		m++;
 	}
-	cout << m << endl;
-	sort(e + 1, e + m);
-	memset(G, INF, sizeof(G));
-	memset(ans, INF, sizeof(ans));
-	G[0] = 0;
-	int mx = 0;
-	for (int i = 1; i < m; i++) {
-		int k = lower_bound(G + 1, G + 1 + m, e[i].s) - G;
-		G[k] = e[i].s;
-		cout << "k:" << k << ' ' << "G[" << k << "]:" << G[k] << endl;
-		mx = max(mx, k);
+	m--;
+	sort(e + 1, e + m + 1);
+	int mx = 0, pos = 0;
+	for (int i = 1; i <= m; i++) {
+		dp[i] = 1;
+		for (int j = 1; j < i; j++) {
+			if (e[i].s > e[j].s && e[i].v < e[j].v && dp[i] < dp[j] + 1) {
+				dp[i] = dp[j] + 1;
+				rec[i] = j;
+			}
+		}
+		if (dp[i] > mx) {
+			mx = dp[i];
+			pos = i;
+		}
 	}
-	for (int i = 1; i <= mx; i++) {
-		printf("%d\n", G[i]);
+	stack<int> ans;
+	while (pos) {
+		ans.push(pos);
+		pos = rec[pos];
+	}
+	printf("%d\n", ans.size());
+	while (!ans.empty()) {
+		printf("%d\n", e[ans.top()].id);
+		ans.pop();
 	}
 	return 0;
 }
