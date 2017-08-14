@@ -156,3 +156,44 @@ void findfac(ll n)
 	findfac(p);
 	findfac(n / p);
 }
+
+
+//FFT O(nlogn)
+int rev(int id, int len)
+{
+	int res = 0;
+	for (int i = 0; (1 << i) < len; i++) {
+		res <<= 1;
+		if (id & (1 << i))
+			res |= 1;
+	}
+	return res;
+}
+void fft(vector<complex<double> > &a, int len, int dft)
+{
+	vector<complex<double> > tmp;
+	tmp.resize(len);
+	for (int i = 0; i < len; i++) {
+		tmp[rev(i, len)] = a[i];
+	}
+	for (int s = 1; 1 << s <= len; s++) {
+		int m = 1 << s;
+		complex<double> wm = complex<double>(cos(dft * 2 * pi / m), sin(dft * 2 * pi / m));
+		for (int k = 0; k < len; k += m) {
+			complex<double> w = complex<double>(1, 0);
+			for (int j = 0; j < (m >> 1); j++) {
+				complex<double> t = w * tmp[k + j + (m >> 1)];
+				complex<double> u = tmp[k + j];
+				tmp[k + j] = u + t;
+				tmp[k + j + (m >> 1)] = u - t;
+				w = w * wm;
+			}
+		}
+	}
+	if (dft == -1) {
+		for (int i = 0; i < len; i++) {
+			tmp[i] = complex<double>(tmp[i].real() / len, tmp[i].imag() / len);
+		}
+	}
+	a = tmp;
+}

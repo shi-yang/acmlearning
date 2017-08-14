@@ -11,6 +11,7 @@ struct edge {
 } e[N << 1];
 int mx[N << 2];
 int cnt, head[N], dep[N], bl[N], size[N], fa[N], pos[N];
+int son[N];
 int v[N];
 int sz;
 void add_edge(int from, int to, int cost)
@@ -29,6 +30,8 @@ void dfs1(int x)
 		v[e[i].to] = e[i].cost;
 		dfs1(e[i].to);
 		size[x] += size[e[i].to];
+		if (size[son[x]] < size[e[i].to])
+			son[x] = e[i].to;
 	}
 }
 void dfs2(int x, int chain)
@@ -36,16 +39,14 @@ void dfs2(int x, int chain)
 	int k = 0;
 	pos[x] = ++sz;
 	bl[x] = chain;
-	for (int i = head[x]; i; i = e[i].next) {
-		if (dep[e[i].to] > dep[x] && size[k] < size[e[i].to])
-			k = e[i].to;
-	}
-	if (k == 0)
+	if (son[x]) {
+		dfs2(son[x], chain);
+		for (int i = head[x]; i; i = e[i].next) {
+			if (e[i].to != son[x] && dep[e[i].to] > dep[x])
+				dfs2(e[i].to, e[i].to);
+		}
+	} else {
 		return;
-	dfs2(k, chain);
-	for (int i = head[x]; i; i = e[i].next) {
-		if (dep[e[i].to] > dep[x] && k != e[i].to)
-			dfs2(e[i].to, e[i].to);
 	}
 }
 void update(int p, int v, int l, int r, int rt)
@@ -82,9 +83,11 @@ int solve(int x, int y)
 		res = max(res, query(pos[bl[x]], pos[x], 1, n, 1));
 		x = fa[bl[x]];
 	}
+	if (x == y)
+		return res;
 	if (pos[x] > pos[y])
 		swap(x, y);
-	return max(res, query(pos[x], pos[y], 1, n, 1));
+	return max(res, query(pos[son[x]], pos[y], 1, n, 1));
 }
 int main()
 {
@@ -94,6 +97,7 @@ int main()
 		scanf("%d", &n);
 		cnt = sz = 0;
 		memset(head, 0, sizeof(head));
+		memset(son, 0, sizeof(son));
 		for (int i = 1; i < n; i++) {
 			int a, b, c;
 			scanf("%d %d %d", &a, &b, &c);

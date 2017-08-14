@@ -11,7 +11,18 @@ struct Trie {
 	}
 };
 Trie * head = new Trie();
-
+void insert(char *s)
+{
+	Trie * p = head;
+	for (int i = 0; s[i]; i++) {
+		int c = s[i] - 'a';
+		if (p->child[c] == NULL) {
+			p->child[c] = new Trie();
+		}
+		p = p->child[c];
+		p->cnt++;
+	}
+}
 void insert(char *s, char *t)
 {
 	Trie * p = head;
