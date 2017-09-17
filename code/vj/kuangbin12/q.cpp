@@ -5,11 +5,11 @@ char s[N][N];
 int n;
 int main()
 {
-	while (~scanf("%d", &n) && n) {
-		for (int i = 0; i < n; i++) {
-			scanf("%s", s[i]);
-		}
-		
-	}
-	return 0;
+  while (~scanf("%d", &n) && n) {
+    for (int i = 0; i < n; i++) {
+      scanf("%s", s[i]);
+    }
+    for (    
+  }
+  return 0;
 }

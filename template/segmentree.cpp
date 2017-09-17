@@ -27,6 +27,7 @@ int query(int ll, int rr, int l, int r, int rt)
 void update(int x, int add, int l, int r, int rt)
 {
   if (l == r) {
+    mx[rt] = add;
     sum[rt] += add;
   } else {
     int m = (l + r) >> 1;
@@ -34,6 +35,7 @@ void update(int x, int add, int l, int r, int rt)
       update(x, add, l, m, rt << 1);
     else
       update(x, add, m + 1, r, rt << 1 | 1);
+    mx[rt] = max(mx[rt << 1], mx[rt << 1 | 1]);
     sum[rt] = sum[rt << 1] + sum[rt << 1 | 1];
   }
 }
