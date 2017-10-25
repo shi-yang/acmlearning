@@ -45,8 +45,6 @@ void dfs2(int x, int chain)
 			if (e[i].to != son[x] && dep[e[i].to] > dep[x])
 				dfs2(e[i].to, e[i].to);
 		}
-	} else {
-		return;
 	}
 }
 void update(int p, int v, int l, int r, int rt)

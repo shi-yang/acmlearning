@@ -10,7 +10,7 @@ void add_edge(int from, int to, int cap)
     G[from].push_back((edge){to, cap, G[to].size()});
     G[to].push_back((edge){from, 0, G[from].size() - 1});
 }
-void bfs(int s, int t)
+bool bfs(int s, int t)
 {
     memset(level, -1, sizeof(level));
     queue<int> que;
@@ -27,9 +27,7 @@ void bfs(int s, int t)
             }
         }
     }
-    if (level[t] == -1)
-        return false;
-    return true;
+    return level[t] != -1;
 }
 int dfs(int v, int t, int f)
 {
@@ -102,7 +100,7 @@ int maxflow(int s, int t)
             break;
         for (int i = t; i != s; i = edges[p[i]].from) {
             edges[p[i]].flow += a[t];
-            edges[p[i]].flow -= a[t];
+            edges[p[i] ^ 1].flow -= a[t];
         }
         flow += a[t];
     }
@@ -206,7 +204,7 @@ struct ISAP {
                 Edge &e = edges[G[u][i]];
                 if (e.cap > e.flow && d[u] == d[e.to] + 1) {
                     ok = true;
-                    p[e.to] = G[u][i]; 
+                    p[e.to] = G[u][i];
                     cur[u] = i;
                     u = e.to;
                     break;
